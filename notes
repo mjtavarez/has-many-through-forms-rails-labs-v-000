@@ -1,0 +1,20 @@
+
+<h3>COMMENTS</h3>
+<% if @post.comments.size > 0 %>
+    <ul>
+        <% @post.comments.each do |comment| %>
+            <li><strong><%= comment.user.username%></strong> says: <%= comment.content%></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<h3>Unique Commenters</h3>
+<!--Must figure out how to properly route to users#show page for users who have commented on this post-->
+<!--No route matches {:action=>"show", :controller=>"users", :id=>nil} missing required keys: [:id]-->
+<ul>
+    <% if @post.unique_users && @post.unique_users.size > 0 %>
+        <% @post.unique_users.each do |user| %>
+            <li><%= link_to user.username, user_path(user) %></li>
+        <% end %>
+    <% end %>
+</ul>
